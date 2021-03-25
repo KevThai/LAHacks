@@ -10,6 +10,9 @@ const googleAPIKey = 'AIzaSyB5dC46wxo9Czc8RUB2gmkb3xltCTLH1_8';
  * @returns {Array} Contains objects with info on each book with information found
  */
 function findBookReviews(bookList) {
+    //Split on unique substring
+    bookList = bookList.split("#,")
+
     let allBookReviews = []
 
     //Iterate through each book and search for info 
@@ -18,10 +21,10 @@ function findBookReviews(bookList) {
 
         if(searchResult !== null) {
             allBookReviews.push(searchResult);
-        }
+        } 
     })
 
-    return allBookReviews
+    process.send(allBookReviews)
 }
 
 /**
@@ -66,5 +69,8 @@ function bookAPICall(bookTitle) {
         return null
     }
 }
+
+//For async call
+findBookReviews(process.argv[2]);
 
 module.exports = findBookReviews
