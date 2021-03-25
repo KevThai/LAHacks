@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {default as computerVision} from './ocr';
 
 ReactDOM.render(
   <React.StrictMode>
+    <button onClick={() => computerVision()}>
+      API Call
+    </button>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
