@@ -14,7 +14,7 @@ const ApiKeyCredentials = require("@azure/ms-rest-js").ApiKeyCredentials;
  * AUTHENTICATE
  * This single client is used for all examples.
  */
-const key = "eb2b38e5a68940cf987fa23db7d3dbc0";
+const key = process.env.OCR_KEY;
 const endpoint = process.env.OCR_ENDPNT;
 
 const OCR_client = new ComputerVisionClient(
