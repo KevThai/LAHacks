@@ -41,9 +41,10 @@ function bookAPICall(bookTitle) {
     let bookInfo = {
         title: '',
         avgReview: 0,
-        authors: []
+        authors: [],
+        thumbnail: ''
     }
-
+    
     //Synchrounous API request
     request.open("GET", requestURL, false)
     request.send(null);
@@ -52,11 +53,13 @@ function bookAPICall(bookTitle) {
     if(request.status == 200) {
         let bookSearchResults = JSON.parse(request.responseText);
 
+        
         //Only return object if there are any search results
         if(bookSearchResults.totalItems != 0) {
             bookInfo.title = bookSearchResults.items[0].volumeInfo.title;
             bookInfo.avgReview = bookSearchResults.items[0].volumeInfo.averageRating;
             bookInfo.authors = bookSearchResults.items[0].volumeInfo.authors;
+            bookInfo.thumbnail = bookSearchResults.items[0].volumeInfo.imageLinks.thumbnail
 
             return bookInfo;
         } else {
